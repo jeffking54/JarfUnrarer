@@ -1,7 +1,8 @@
 #!/bin/sh
 
 echo 'starting'
-lookDir='/mnt/vol1/torrents/Finished'
+lookDir='/media/HITACHI/finished'
+videoDir='/media/HITACHI/videos'
 
 run_extractor()
 {
@@ -15,9 +16,9 @@ then
         mkdir $newDir
         echo 'success in testing ' $f
         unrar e -y $f $newDir
-	mv $newDir/*.mkv /mnt/vol1/torrents/videos
-	mv $newDir/*.mp4 /mnt/vol1/torrents/videos
-	mv $newDir/*.avi /mnt/vol1/torrents/videos
+	mv $newDir/*.mkv $videoDir
+	mv $newDir/*.mp4 $videoDir
+	mv $newDir/*.avi $videoDir
 	if [ "$(ls -A $newDir)" ]; then
 	     echo 'Directory not empty, keeping ' $newDir
 	else
@@ -44,7 +45,7 @@ if ps -ef | grep -v grep | grep -v unrarall | grep unrar ; then
   exit 0
 fi
 
-cd /mnt/vol1/torrents/unrar
+cd /media/HITACHI/finished/
 
 for f in `find $lookDir -type f -name '*.part01.rar'`
 do
